@@ -52,7 +52,7 @@ def get_char_function(str, pos)
     empty_str
 end
   ​
-def remove_last_two_char(str)
+def remove_first_last_two_char(str)
     result = ''
   ​
     empty_str = get_char_function(str, 0)
