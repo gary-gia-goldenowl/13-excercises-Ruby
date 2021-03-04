@@ -45,19 +45,14 @@ def remove_first_last_two_char(str)
     empty_str = ""
     result = ""
     pos = 0
-    pos2 = 0
     str.split("").each do |char|
-        empty_str << char if pos != 0 && pos != 1
+        empty_str << char if pos != 0 && pos != 1 && pos != str.length - 1 && pos != str.length - 2
         pos += 1
     end
-
-    empty_str.reverse.split("").each do |char|
-        result << char if pos2 !=0 && pos2 != 1
-        pos2 +=1
-    end
-    result.reverse
+    empty_str
 
 end
+  
   
 
 
@@ -65,7 +60,7 @@ end
 
 ######### ID 6
 def count_to_zero(n)
-    if n == 0 || n == -1
+    if n <= 0
         puts n
     else
         puts n
@@ -124,7 +119,7 @@ def seperate_even_odd(arr)
         arr_seperate << num if num % 2 == 0
         arr2 << num if num % 2 == 1
     end
-    puts "#{arr_seperate} , #{arr2}"
+     "#{arr_seperate} , #{arr2}"
 end
 
 
@@ -195,8 +190,10 @@ class Car
         @color = color
         @current_speed = current_speed
 
-        def self.current_speed
+
+        def current_speed
             puts "Your current speed is #{@current_speed}"
+            @current_speed                                  # Return current_speed to compare two Car
         end
     end
 
@@ -224,5 +221,13 @@ c1.speed_up(40)
 c1.current_speed
 c1.brake(20)
 c1.current_speed
-c1.shut_down
-c1.current_speed
+
+c2 = Car.new("1988","Mec","red")
+c2.current_speed
+c2.speed_up(40)
+c2.speed_up(40)
+c2.current_speed
+c2.brake(20)
+c2.current_speed
+
+c1.current_speed.eql? c2.current_speed  #Compare
