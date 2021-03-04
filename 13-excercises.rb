@@ -41,24 +41,22 @@ end
 
 
 ######### ID 5
-def get_char_function(str, pos)
-    empty_str = ''
-  ​
-    str.split('').each do |char|
-      empty_str << char if pos != 0 && pos != 1
-      pos += 1
+def remove_first_last_two_char(str)
+    empty_str = ""
+    result = ""
+    pos = 0
+    pos2 = 0
+    str.split("").each do |char|
+        empty_str << char if pos != 0 && pos != 1
+        pos += 1
     end
 
-    empty_str
-end
-  ​
-def remove_first_last_two_char(str)
-    result = ''
-  ​
-    empty_str = get_char_function(str, 0)
-    result = get_char_function(empty_str.reverse, 0)
-    
+    empty_str.reverse.split("").each do |char|
+        result << char if pos2 !=0 && pos2 != 1
+        pos2 +=1
+    end
     result.reverse
+
 end
   
 
@@ -67,7 +65,7 @@ end
 
 ######### ID 6
 def count_to_zero(n)
-    if n == 0
+    if n == 0 || n == -1
         puts n
     else
         puts n
@@ -96,8 +94,7 @@ end
 def sum (arr)
     arr_sum = 0
     arr.each do |num|
-        a = arr.inject(){|sum,x| sum + x }
-        arr_sum = a
+        arr_sum = arr_sum + num
     end
     arr_sum
 end
@@ -123,14 +120,11 @@ end
 def seperate_even_odd(arr)
     arr_seperate = []
     arr2 = []
-
     arr.each do |num|
         arr_seperate << num if num % 2 == 0
         arr2 << num if num % 2 == 1
     end
-
-    arr_sum = arr_seperate + arr2
-    arr_sum.flatten
+    puts "#{arr_seperate} , #{arr2}"
 end
 
 
@@ -140,7 +134,6 @@ end
 ########## ID 11
 def merge (name , age)
     a = [*name , *age].to_h     #Put two hash into an array then transform to hash
-# or just
 end 
 
 
@@ -150,7 +143,7 @@ end
 ########## ID 12
 
 def same_age_user(users)
-    age_arr = users.map { |p| p[:age] }.uniq
+    age_arr = users.map { |p| p[:age] }.uniq    #ban dau tra ve mang chuoi trung` , uniq het trung
 
     result = {}
 
@@ -196,17 +189,17 @@ class Car
         @color = str
     end
 
-    def initialize(year , model , color ,current_speed=0)
+    def initialize(year , model , color ,current_speed: 0)
         @year = year
         @model = model
         @color = color
         @current_speed = current_speed
+
+        def self.current_speed
+            puts "Your current speed is #{@current_speed}"
+        end
     end
 
-    def current_speed
-        puts "Your current speed is #{@current_speed}"
-    end
-    
     def speed_up(num)
         @current_speed += num
         puts "You push the gas and accelerate #{num} mph"
