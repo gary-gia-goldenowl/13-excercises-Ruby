@@ -43,7 +43,6 @@ end
 ######### ID 5
 def remove_first_last_two_char(str)
     empty_str = ""
-    result = ""
     pos = 0
     str.split("").each do |char|
         empty_str << char if pos != 0 && pos != 1 && pos != str.length - 1 && pos != str.length - 2
